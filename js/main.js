@@ -5,14 +5,14 @@ function init() {
     document.querySelector("#signup").style.display = "none"
 
     // Login
-    document.querySelector("#btnLogin").addEventListener("click", btnLogin)
+    document.querySelector("#btnLogin").addEventListener("click", handlerLogin)
 
     // Signup
-    document.querySelector("#btnLoginSignUp").addEventListener("click", btnLoginSignUp)
-    document.querySelector("#btnSignUp").addEventListener("click", btnSignUp)
+    document.querySelector("#btnLoginSignUp").addEventListener("click", handlerLoginSignUp)
+    document.querySelector("#btnSignUp").addEventListener("click", handlerSignUp)
 
     // Endsession
-    document.querySelector("#btnEndSession").addEventListener("click", btnEndSession)
+    document.querySelector("#btnEndSession").addEventListener("click", handlerEndSession)
 
     // If user is logged then redirect to home
     if (localStorage.getItem("user") != undefined) {
@@ -22,7 +22,7 @@ function init() {
     }
 }
 
-function btnLogin() {
+function handlerLogin() {
     const user = document.querySelector("#txtLoginUser").value
     const password = document.querySelector("#txtLoginPassword").value
 
@@ -45,13 +45,21 @@ function btnLogin() {
     })
 }
 
-function btnSignUp(){
+function handlerSignUp(){
     const user = document.querySelector("#txtSignUpUser").value
     const password = document.querySelector("#txtSignUpPassword").value
     const stateID = document.querySelector("#txtSignUpStateID").value
     const cityID = document.querySelector("#txtSignUpCityID").value
 
-    console.log(user, password, stateID, cityID)
+    if (user == "" || password == "" || passwordValidate == "" || stateID == "" || cityID == "") {
+        document.querySelector("#pLoginMessage").innerHTML = 'Todos los campos son obligatorios.'
+        return
+    }
+
+    if (password != passwordValidate) {
+        document.querySelector("#pSignUpMessage").innerHTML = "La validación de la contraseña debe coincidir."
+        return
+    }
 
     User.signup(user, password, stateID, cityID)
     .then((userSignup) => {
@@ -68,7 +76,7 @@ function btnSignUp(){
     })
 }
 
-function btnLoginSignUp() {
+function handlerLoginSignUp() {
     document.querySelector("#login").style.display = "none"
     document.querySelector("#signup").style.display = "block"
 
@@ -100,7 +108,7 @@ function homeUI() {
     document.querySelector("#home").style.display = "block"
 }
 
-function btnEndSession(){
+function handlerEndSession(){
     localStorage.clear()
     document.querySelector("#home").style.display = "none"
     document.querySelector("#login").style.display = "block"
