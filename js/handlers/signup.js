@@ -21,3 +21,29 @@ function btnSignUp(){
         homeUI()
     })
 }
+
+function btnLoginSignUp() {
+    document.querySelector("#login").style.display = "none"
+    document.querySelector("#signup").style.display = "block"
+
+    // set states on select
+    User.states()
+    .then((states => {
+        if (states.error != undefined) {
+            console.log("error on http departamentos: ", states.error)
+            document.querySelector("#pSignUpMessage").innerHTML = userSignup.error
+            return
+        }
+
+        // iterate stats and add options
+        for (let i = 0; i < states.length; i++) {
+            document.querySelector("#selectStates").innerHTML += `<option value=${states[i].id}>${states[i].nombre}</option>`
+        }
+
+        let stateID = document.querySelector("#selectStates").value
+        console.log(stateID)
+
+
+        // TODO add cities by states
+    }))
+}

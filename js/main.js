@@ -6,9 +6,9 @@ function init() {
 
     // Login
     document.querySelector("#btnLogin").addEventListener("click", btnLogin)
-    document.querySelector("#btnLoginSignUp").addEventListener("click", btnLoginSignUp)
 
     // Signup
+    document.querySelector("#btnLoginSignUp").addEventListener("click", btnLoginSignUp)
     document.querySelector("#btnSignUp").addEventListener("click", btnSignUp)
 
     endSession()
