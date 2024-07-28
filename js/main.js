@@ -48,11 +48,12 @@ function handlerLogin() {
 function handlerSignUp(){
     const user = document.querySelector("#txtSignUpUser").value
     const password = document.querySelector("#txtSignUpPassword").value
-    const stateID = document.querySelector("#txtSignUpStateID").value
+    const passwordValidate = document.querySelector("#txtSignUpPasswordValidate").value
+    const stateID = document.querySelector("#selectStates").value
     const cityID = document.querySelector("#txtSignUpCityID").value
 
     if (user == "" || password == "" || passwordValidate == "" || stateID == "" || cityID == "") {
-        document.querySelector("#pLoginMessage").innerHTML = 'Todos los campos son obligatorios.'
+        document.querySelector("#pSignUpMessage").innerHTML = 'Todos los campos son obligatorios.'
         return
     }
 
@@ -93,10 +94,6 @@ function handlerLoginSignUp() {
         for (let i = 0; i < states.length; i++) {
             document.querySelector("#selectStates").innerHTML += `<option value=${states[i].id}>${states[i].nombre}</option>`
         }
-
-        let stateID = document.querySelector("#selectStates").value
-        console.log(stateID)
-
 
         // TODO add cities by states
     }))
