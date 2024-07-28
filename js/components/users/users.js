@@ -31,6 +31,7 @@ class User {
             response = body
         })
         .catch((error) => {
+            console.log(error)
             return "Ha ocurrido un error"
         });
 
@@ -99,6 +100,74 @@ class User {
             user.password = data.password
 
             return user
+        }
+
+        // If http status is other than 200 then return err
+        let error = {
+            error: response.mensaje
+        }
+        return error
+    }
+
+    static async states(){
+        let response
+        await fetch("http://babytracker.develotion.com/departamentos.php", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then((response) => {
+            return response.json()
+        })
+        .then((body) => {
+            response = body
+        })
+        .catch((error) => {
+            console.log(error)
+            return "Ha ocurrido un error"
+        });
+
+        if (response.codigo == 200) {
+            // If http status is 200 OK then response 
+            // save states for signup
+            if (response.departamentos != undefined){
+                return response.departamentos
+            }
+        }
+
+        // If http status is other than 200 then return err
+        let error = {
+            error: response.mensaje
+        }
+        return error
+    }
+
+    static async cities(stateID){
+        let response
+        await fetch(`http://babytracker.develotion.com//ciudades.php?idDepartamento=${stateID}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then((response) => {
+            return response.json()
+        })
+        .then((body) => {
+            response = body
+        })
+        .catch((error) => {
+            console.log(error)
+            return "Ha ocurrido un error"
+        });
+
+        if (response.codigo == 200) {
+            // If http status is 200 OK then response 
+            // save cities for signup
+            if (response.ciudades != undefined){
+                return response.ciudades
+            }
         }
 
         // If http status is other than 200 then return err

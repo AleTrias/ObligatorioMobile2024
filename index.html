@@ -12,10 +12,8 @@
             <label for="txtLoginUser">Usuario: </label>
             <input id="txtLoginUser" type="text">
             <br>
-            <br>
             <label for="txtLoginPassword">Contraseña: </label>
             <input id="txtLoginPassword" type="password">
-            <br>
             <br>
             <input id="btnLogin" type="button" value="Ingresar">
             <input id="btnLoginSignUp" type="button" value="Registrarse">
@@ -27,22 +25,19 @@
             <label for="txtSignUpUser">Usuario: </label>
             <input id="txtSignUpUser" type="text">
             <br>
-            <br>
             <label for="txtSignUpPassword">Contraseña: </label>
             <input id="txtSignUpPassword" type="password">
-            <br>
             <br>
             <label for="txtSignUpPasswordValidate">Repetir contraseña: </label>
             <input id="txtSignUpPasswordValidate" type="password">
             <br>
-            <br>
-            <label for="txtSignUpStateID">Departamento: </label>
-            <input id="txtSignUpStateID" type="number">
-            <br>
+            <label for="selectStates">Seleccione departamento: </label>
+            <select id="selectStates">
+                <option disabled selected hidden>Departamentos</option>
+            </select>
             <br>
             <label for="txtSignUpCityID">Ciudad: </label>
             <input id="txtSignUpCityID" type="number">
-            <br>
             <br>
             <input id="btnSignUp" type="button" value="Registrarse">
             <br>
@@ -53,8 +48,9 @@
             <h1>Bienvenido</h1>
         </div>
 
-        <script type="text/javascript" src="js/users/users.js"></script>
-        <script type="text/javascript" src="js/event/event.js"></script>
+        <script type="text/javascript" src="js/handlers/login.js"></script>
+        <script type="text/javascript" src="js/components/users/users.js"></script>
+        <script type="text/javascript" src="js/components/event/event.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>
