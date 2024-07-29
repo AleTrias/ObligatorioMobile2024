@@ -5,19 +5,19 @@ class Event {
         this.details = null;
     }
 
-    static async insert(userID, categoryID, detail, datetime){
+    static async insert(userID, categoryID, detail, datetime, apiKey ){
         let data = {
             idCategoria: categoryID,
             idUsuario: userID,
             detalle: detail,
-            fecha: datetime
+            fecha: datetime          
         }
         
         await fetch("http://babytracker.develotion.com/eventos.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "apikey": "a834268a4550eaef16ce0125a1c5ba6a",
+                "apikey" : apiKey,
                 "iduser": userID
             },
             body: JSON.stringify(data)
