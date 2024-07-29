@@ -31,15 +31,16 @@
             <label for="txtSignUpPasswordValidate">Repetir contraseña: </label>
             <input id="txtSignUpPasswordValidate" type="password">
             <br>
-            <label for="selectStates">Seleccione departamento: </label>
             <select id="selectStates">
-                <option disabled selected hidden>Departamentos</option>
+                <option disabled selected hidden>Seleccione tu departamento</option>
             </select>
             <br>
-            <label for="txtSignUpCityID">Ciudad: </label>
-            <input id="txtSignUpCityID" type="number">
+            <select id="selectCities" hidden>
+                <option disabled selected hidden>Seleccione tu ciudad</option>
+            </select>
             <br>
             <input id="btnSignUp" type="button" value="Registrarse">
+            <input id="btnSignUpLogin" type="button" value="Volver al login">
             <br>
             <p id="pSignUpMessage"></p>
         </div>

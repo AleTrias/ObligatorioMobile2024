@@ -6,10 +6,12 @@ function init() {
 
     // Login
     document.querySelector("#btnLogin").addEventListener("click", handlerLogin)
+    document.querySelector("#btnSignUpLogin").addEventListener("click", handlerSignUpLogin)
 
     // Signup
     document.querySelector("#btnLoginSignUp").addEventListener("click", handlerLoginSignUp)
     document.querySelector("#btnSignUp").addEventListener("click", handlerSignUp)
+    document.querySelector("#selectStates").addEventListener("change", populateCities)
 
     // Endsession
     document.querySelector("#btnEndSession").addEventListener("click", handlerEndSession)
@@ -43,6 +45,11 @@ function handlerLogin() {
         localStorage.setItem("user", JSON.stringify(userLogin))
         homeUI()
     })
+}
+
+function handlerSignUpLogin() {
+    document.querySelector("#login").style.display = "block"
+    document.querySelector("#signup").style.display = "none"
 }
 
 function handlerSignUp(){
@@ -94,9 +101,25 @@ function handlerLoginSignUp() {
         for (let i = 0; i < states.length; i++) {
             document.querySelector("#selectStates").innerHTML += `<option value=${states[i].id}>${states[i].nombre}</option>`
         }
-
-        // TODO add cities by states
     }))
+}
+
+function populateCities() {
+    let stateID = document.getElementById('selectStates').value
+    User.cities(stateID)
+    .then((cities) => {
+        if (cities.error != undefined) {
+            console.log("error on http cities: ", cities.error)
+            document.querySelector("#pSignUpMessage").innerHTML = userSignup.error
+            return
+        }
+
+        document.querySelector("#selectCities").style.display = "block"
+        // iterate stats and add options
+        for (let i = 0; i < cities.length; i++) {
+            document.querySelector("#selectCities").innerHTML += `<option value=${cities[i].id}>${cities[i].nombre}</option>`
+        }
+    })
 }
 
 function homeUI() {
