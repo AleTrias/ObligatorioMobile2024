@@ -3,6 +3,8 @@ init()
 function init() {
     document.querySelector("#home").style.display = "none"
     document.querySelector("#signup").style.display = "none"
+    document.querySelector("#newEvent").style.display = "none"
+
 
     // Login
     document.querySelector("#btnLogin").addEventListener("click", handlerLogin)
@@ -16,6 +18,12 @@ function init() {
     // Endsession
     document.querySelector("#btnEndSession").addEventListener("click", handlerEndSession)
 
+    // NewEvent
+    document.querySelector("#btnNewEvent").addEventListener("click", handlerNewEvent)
+
+    //CreateEvent
+    document.querySelector("#btnCreateEvent").addEventListener("click", handlerCreateEvent)
+
     // If user is logged then redirect to home
     if (localStorage.getItem("user") != undefined) {
         document.querySelector("#login").style.display = "none"
@@ -23,6 +31,30 @@ function init() {
         return
     }
 }
+function handlerCreateEvent(){
+    let user = localStorage.getItem("user")
+    const categoryID = document.querySelector("#txtCategories").value
+    const details = document.querySelector("#txtDetails").value
+    let datetime = document.querySelector("#txtDateTime").value
+    if (categoryID == "") {
+        document.querySelector("#pNewEventoMessage").innerHTML = 'El campo categoria es obligatorio.'
+        return
+    }
+    // como se le coloca la fecha y hora si el usuario no la pone
+    if (datetime == ""){
+        datetime = Date.now();
+    }
+    user =  JSON.parse(user);
+    console.log(user)
+    Event.insert(user.userID, categoryID, details, datetime, user.apiKey)
+    
+}
+
+function handlerNewEvent(){
+    document.querySelector("#home").style.display = "none"
+    document.querySelector("#newEvent").style.display = "block"
+}
+
 
 function handlerLogin() {
     const user = document.querySelector("#txtLoginUser").value
